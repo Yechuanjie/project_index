@@ -16,10 +16,10 @@ export default {
   data() {
     return {
       bgStyle: {
-        backgroundImage: `url(${require(`../assets/cp${Math.floor((Math.random() * 3) + 1)}.jpg`)})`
+        backgroundImage: `url(${require(`../assets/cp${Math.floor((Math.random() * 6) + 1)}.jpg`)})`
       },
       bgUrl: ''
-    }
+    };
   },
   components: {},
   props: {
@@ -27,7 +27,7 @@ export default {
       type: String,
       default: 'nest粒子效果'
     },
-    bg: {
+    imgOrder: {
       type: Number,
       default: 1
     },
@@ -36,11 +36,10 @@ export default {
       default: '/nest'
     }
   },
-  created() {
-  },
+  created() {},
   methods: {},
   computed: {}
-}
+};
 </script>
 <style lang="scss" scoped>
 a {
@@ -52,7 +51,9 @@ a {
   width: 300px;
   height: 160px;
   position: relative;
-  .effect_up_bg, .effect_mid_bg, .effect_down_bg {
+  .effect_up_bg,
+  .effect_mid_bg,
+  .effect_down_bg {
     position: absolute;
     background-position: center;
     background-repeat: no-repeat;
@@ -64,24 +65,24 @@ a {
     height: 160px;
     z-index: 3;
     .effect_inner {
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 17px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-        transition: all 0.3s;
-        &:hover {
-          transform: translate3d(0, -6px, 0);
-          box-shadow: 0 30px 30px 0px rgba(0, 0, 100, 0.4);
-        }
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 17px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      transition: all 0.3s;
+      &:hover {
+        transform: translate3d(0, -6px, 0);
+        box-shadow: 0 30px 30px 0px rgba(0, 0, 100, 0.4);
       }
+    }
   }
   .effect_mid_bg {
     width: 290px;
     height: 150px;
-    opacity: .4;
+    opacity: 0.4;
     z-index: 2;
     top: 48px;
     left: 35px;
@@ -89,7 +90,7 @@ a {
   .effect_down_bg {
     width: 280px;
     height: 140px;
-    opacity: .2;
+    opacity: 0.2;
     z-index: 1;
     top: 65px;
     left: 40px;

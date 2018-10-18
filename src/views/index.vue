@@ -9,8 +9,8 @@
 
 <script>
 // @ is an alias to /src
-import banner from '@/components/banner.vue'
-import card from '@/components/card.vue'
+import banner from '@/components/banner.vue';
+import card from '@/components/card.vue';
 
 const projectList = [
   {
@@ -25,19 +25,24 @@ const projectList = [
     name: '粒子图轮播',
     link: '/mapswiper'
   }
-]
+];
 export default {
   name: 'index',
   components: {
     banner,
     card
   },
-  data () {
+  data() {
     return {
       cardList: projectList
-    }
+    };
+  },
+  created() {
+  },
+  methods: {},
+  computed: {
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -8,14 +8,14 @@
 <script>
 export default {
   data() {
-    return {}
+    return {};
   },
   components: {},
   props: {},
   created() {},
   methods: {},
   computed: {}
-}
+};
 </script>
 <style lang="scss" scoped>
 .header {
@@ -24,7 +24,7 @@ export default {
   line-height: 37vh;
   background: url('../assets/background.png') center no-repeat;
   background-size: cover;
-  color: rgba(255, 255, 255, .8);
+  color: rgba(255, 255, 255, 0.8);
   .head_inner {
     h1 {
       font-size: 40px;

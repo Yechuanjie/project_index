@@ -4,7 +4,8 @@
     "parser": "babylon",
     "trailingComma": "none",
     "jsxBracketSameLine": true,
-    "semi": false,
+    "breakBeforeElse": true,
+    "semi": true,
     "singleQuote": true,
     "overrides": [
       {
