@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --port 8060",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
@@ -65,6 +65,7 @@
       ],
       "brace-style": [2, "1tbs", { "allowSingleLine": true }],
       "semi": 0,
+      "no-useless-constructor": 0,
       "no-console": 0,
       "prefer-const": 0,
       "prefer-template": 0,
@@ -80,7 +81,7 @@
       "no-prototype-builtins": 0,
       "import/no-extraneous-dependencies": 0,
       "radix": 0,
-      "no-new": 1,
+      "no-new": 0,
       "new-cap": 1,
       "eol-last": "off",
       "linebreak-style": "off",

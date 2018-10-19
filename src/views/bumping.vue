@@ -1,6 +1,10 @@
 <template>
     <div class="bumping">
-        <canvas id="canvas" width="300" height="200"></canvas>
+        <canvas id="canvas1" width="300" height="200"></canvas>
+        <canvas id="canvas2" width="300" height="200"></canvas>
+        <canvas id="canvas3" width="300" height="200"></canvas>
+        <canvas id="canvas4" width="300" height="200"></canvas>
+        <canvas id="canvas5" width="300" height="200"></canvas>
     </div>
 </template>
 <script>
@@ -10,80 +14,110 @@ export default {
   },
   components: {},
   props: {},
-  created() {},
-  mounted() {
-    this.initBall();
+  created() {
+    this.$nextTick(() => {
+      this.initBall();
+    });
   },
+  mounted() {},
   methods: {
-    initBall: () => {
-      let Ball = function(context) {
-        this.left = 100;
-        this.top = 100;
-        this.radius = 10;
-        this.velocityX = 3;
-        this.velocityY = 2;
-        this.context = context;
-      };
-
-      Ball.prototype = {
-        paint: function() {
+    initBall() {
+      class Ball {
+        constructor(canvas, context, addAcceleration) {
+          this.radius = 15; // 球半径
+          this.x = 0; // 初始位置
+          this.y = 0; // 初始位置
+          this.speedx = 4; // 横向移动速度
+          this.speedy = 2; // 竖向移动速度
+          this.canvas = canvas;
+          this.context = context;
+          this.Acceleration = addAcceleration; // 是否添加加速度
+          this.paint();
+        }
+        paint() {
           this.context.beginPath();
-          this.context.arc(this.left + this.radius, this.top + this.radius, this.radius, 0, Math.PI * 2, false);
-          this.context.fillStyle = '#007C8B';
+          this.context.arc(this.x + this.radius, this.y + this.radius, this.radius, 0, 2 * Math.PI);
+          this.context.closePath();
+          this.context.fillStyle = 'rgb(0,124,139)';
           this.context.fill();
-        },
-
-        move: function() {
-          this.left += this.velocityX;
-          this.top += this.velocityY;
         }
-      };
-
-      function handleEdgeCollisions(ball) {
-        let ballRight = ball.left + ball.radius * 2;
-        let ballBottom = ball.top + ball.radius * 2;
-
-        if (ball.left < 0) {
-          ball.left = 0;
-          ball.velocityX = -ball.velocityX;
-        } else if (ballRight > canvas.width) {
-          ball.left = canvas.width - ball.radius * 2;
-          ball.velocityX = -ball.velocityX;
+        move() {
+          this.x += this.speedx;
+          this.y += this.speedy;
+          // 给小球添加加速度 逐帧减少垂直方向的速度
+          if (this.Acceleration) {
+            this.speedy *= 0.99;
+            this.speedy += 0.25;
+          }
         }
-
-        if (ball.top < 0) {
-          ball.top = 0;
-          ball.velocityY = -ball.velocityY;
-        } else if (ballBottom > canvas.height) {
-          ball.top = canvas.height - ball.radius * 2;
-          ball.velocityY = -ball.velocityY;
+        //处理边界情况
+        handleMoveEdge() {
+          let ballWidth = this.radius * 2;
+          let ballRight = this.x + ballWidth;
+          let ballBottom = this.y + ballWidth;
+          if (this.x < 0) {
+            this.speedx = -this.speedx;
+          } else if (ballRight > this.canvas.width) {
+            this.x = this.canvas.width - ballWidth;
+            this.speedx = -this.speedx;
+          }
+          if (this.y < 0) {
+            this.speedy = -this.speedy;
+          } else if (ballBottom > this.canvas.height) {
+            this.y = this.canvas.height - ballWidth;
+            this.speedy = -this.speedy;
+          }
         }
       }
+      this.createBall('canvas1', Ball, false, false);
+      this.createBall('canvas2', Ball, true, false);
+      this.createBall('canvas3', Ball, false, true);
+      this.createBall('canvas4', Ball, true, true);
+      this.createBall('canvas5', Ball, true, true, true);
+    },
 
-      function animate() {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-
-        ball.move();
-        handleEdgeCollisions(ball);
-        ball.paint();
-
-        requestAnimationFrame(animate);
-      }
-
-      let canvas = document.getElementById('canvas');
+    createBall(canvasId, Ball, acceleration, longTail, openMouseControl) {
+      let canvas = document.getElementById(canvasId);
       let context = canvas.getContext('2d');
-      let ball = new Ball(context);
-      ball.paint();
-      requestAnimationFrame(animate);
+      let ball = new Ball(canvas, context, acceleration);
+      console.log(openMouseControl);
+      if (openMouseControl) {
+        canvas.addEventListener('mouseup', (e) => {
+          console.log(e);
+          ball.x = e.offsetX;
+          ball.y = e.offsetY;
+          animate()
+          window.cancelAnimationFrame();
+        })
+      }
+      let animate = () => {
+        if (!longTail) {
+          context.clearRect(0, 0, canvas.width, canvas.height);
+        } else {
+          context.fillStyle = 'rgba(255,255,255,0.3)';
+          context.fillRect(0, 0, canvas.width, canvas.height);
+        }
+        ball.move();
+        ball.handleMoveEdge();
+        ball.paint();
+        window.requestAnimationFrame(animate);
+      };
+      window.requestAnimationFrame(animate);
     }
   },
   computed: {}
 };
 </script>
 <style lang="scss" scoped>
+.bumping {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 canvas {
   border: 1px solid darkslategray;
-  margin: calc(50vh - 100px) auto 0;
+  margin: 80px auto 0;
   display: block;
+  flex: 0;
 }
 </style>
