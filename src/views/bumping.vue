@@ -23,7 +23,7 @@ export default {
   methods: {
     initBall() {
       class Ball {
-        constructor(canvas, context, addAcceleration) {
+        constructor(canvas, context, addAcceleration, desc) {
           this.radius = 15; // 球半径
           this.x = 0; // 初始位置
           this.y = 0; // 初始位置
@@ -32,6 +32,7 @@ export default {
           this.canvas = canvas;
           this.context = context;
           this.Acceleration = addAcceleration; // 是否添加加速度
+          this.desc = desc;
           this.paint();
         }
         paint() {
@@ -39,6 +40,9 @@ export default {
           this.context.arc(this.x + this.radius, this.y + this.radius, this.radius, 0, 2 * Math.PI);
           this.context.closePath();
           this.context.fillStyle = 'rgb(0,124,139)';
+          this.context.font = '18px serif';
+          this.context.textAlign = 'center';
+          this.context.fillText(this.desc, 150, 50);
           this.context.fill();
         }
         move() {
@@ -69,26 +73,26 @@ export default {
           }
         }
       }
-      this.createBall('canvas1', Ball, false, false);
-      this.createBall('canvas2', Ball, true, false);
-      this.createBall('canvas3', Ball, false, true);
-      this.createBall('canvas4', Ball, true, true);
-      this.createBall('canvas5', Ball, true, true, true);
+      this.createBall('canvas1', Ball, false, false, false, '普通小球');
+      this.createBall('canvas2', Ball, true, false, false, '带加速度小球，更逼真的掉落效果');
+      this.createBall('canvas3', Ball, false, true, false, '带长尾效果小球');
+      this.createBall('canvas4', Ball, true, true, false, '带加速度，带长尾效果小球');
+      this.createBall('canvas5', Ball, true, true, true, '点我');
     },
 
-    createBall(canvasId, Ball, acceleration, longTail, openMouseControl) {
+    createBall(canvasId, Ball, acceleration, longTail, openMouseControl, desc) {
       let canvas = document.getElementById(canvasId);
       let context = canvas.getContext('2d');
-      let ball = new Ball(canvas, context, acceleration);
+      let ball = new Ball(canvas, context, acceleration, desc);
       console.log(openMouseControl);
       if (openMouseControl) {
         canvas.addEventListener('mouseup', (e) => {
           console.log(e);
           ball.x = e.offsetX;
           ball.y = e.offsetY;
-          animate()
+          animate();
           window.cancelAnimationFrame();
-        })
+        });
       }
       let animate = () => {
         if (!longTail) {
