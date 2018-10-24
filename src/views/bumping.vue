@@ -77,7 +77,7 @@ export default {
       this.createBall('canvas2', Ball, true, false, false, '带加速度小球，更逼真的掉落效果');
       this.createBall('canvas3', Ball, false, true, false, '带长尾效果小球');
       this.createBall('canvas4', Ball, true, true, false, '带加速度，带长尾效果小球');
-      this.createBall('canvas5', Ball, true, true, true, '点我');
+      this.createBall('canvas5', Ball, true, true, true, '从点击位置开始下落');
     },
 
     createBall(canvasId, Ball, acceleration, longTail, openMouseControl, desc) {
