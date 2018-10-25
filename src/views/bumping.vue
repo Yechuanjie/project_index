@@ -5,12 +5,19 @@
         <canvas id="canvas3" width="300" height="200"></canvas>
         <canvas id="canvas4" width="300" height="200"></canvas>
         <canvas id="canvas5" width="300" height="200"></canvas>
+        <canvas id="canvas6" width="300" height="200"></canvas>
     </div>
 </template>
 <script>
 export default {
   data() {
-    return {};
+    return {
+      animate1: null,
+      animate2: null,
+      animate3: null,
+      animate4: null,
+      animate5: null
+    };
   },
   components: {},
   props: {},
@@ -73,26 +80,42 @@ export default {
           }
         }
       }
-      this.createBall('canvas1', Ball, false, false, false, '普通小球');
-      this.createBall('canvas2', Ball, true, false, false, '带加速度小球，更逼真的掉落效果');
-      this.createBall('canvas3', Ball, false, true, false, '带长尾效果小球');
-      this.createBall('canvas4', Ball, true, true, false, '带加速度，带长尾效果小球');
-      this.createBall('canvas5', Ball, true, true, true, '从点击位置开始下落');
+      this.createBall('canvas1', 1, Ball, false, false, '', '普通小球');
+      this.createBall('canvas2', 2, Ball, true, false, '', '带加速度小球，更逼真的掉落效果');
+      this.createBall('canvas3', 3, Ball, false, true, '', '带长尾效果小球');
+      this.createBall('canvas4', 4, Ball, true, true, '', '带加速度，带长尾效果小球');
+      this.createBall('canvas5', 5, Ball, true, true, 'click', '从点击位置开始下落');
+      this.createBall('canvas6', 6, Ball, true, true, 'move', '跟随手指移动');
     },
 
-    createBall(canvasId, Ball, acceleration, longTail, openMouseControl, desc) {
+    createBall(canvasId, index, Ball, acceleration, longTail, openMouseControl, desc) {
       let canvas = document.getElementById(canvasId);
       let context = canvas.getContext('2d');
       let ball = new Ball(canvas, context, acceleration, desc);
       console.log(openMouseControl);
-      if (openMouseControl) {
+      let animateName = `animate_${index}`;
+      // let animateRuning = false;
+      if (openMouseControl === 'click') {
         canvas.addEventListener('mouseup', (e) => {
+          window.cancelAnimationFrame(animateName);
           console.log(e);
           ball.x = e.offsetX;
           ball.y = e.offsetY;
           animate();
-          window.cancelAnimationFrame();
         });
+      }
+      if (openMouseControl === 'move') {
+        canvas.addEventListener('mousemove', (e) => {
+          window.cancelAnimationFrame(animateName);
+          console.log(e);
+          ball.x = e.offsetX;
+          ball.y = e.offsetY;
+          animate();
+        });
+        canvas.addEventListener('mousemout', () => {
+          window.cancelAnimationFrame(animateName);
+          // animateRuning = false;
+        })
       }
       let animate = () => {
         if (!longTail) {
@@ -104,9 +127,9 @@ export default {
         ball.move();
         ball.handleMoveEdge();
         ball.paint();
-        window.requestAnimationFrame(animate);
+        animateName = window.requestAnimationFrame(animate);
       };
-      window.requestAnimationFrame(animate);
+      animateName = window.requestAnimationFrame(animate);
     }
   },
   computed: {}
