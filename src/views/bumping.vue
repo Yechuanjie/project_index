@@ -111,7 +111,7 @@ export default {
       let animateName = `animate_${index}`;
       let animateRuning = false;
       if (openMouseControl === 'click') {
-        canvas.addEventListener('click', e => {
+        canvas.addEventListener('click', (e) => {
           window.cancelAnimationFrame(animateName);
           console.log(e);
           ball.x = e.offsetX;
@@ -120,7 +120,7 @@ export default {
         });
       }
       if (openMouseControl === 'move') {
-        canvas.addEventListener('mousemove', e => {
+        canvas.addEventListener('mousemove', (e) => {
           if (!animateRuning) {
             clear();
             ball.x = e.offsetX;

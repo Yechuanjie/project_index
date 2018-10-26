@@ -18,6 +18,7 @@
     "@vue/cli-plugin-pwa": "^3.0.5",
     "@vue/cli-service": "^3.0.5",
     "@vue/eslint-config-standard": "^3.0.5",
+    "eslint-config-prettier": "^3.1.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.5.17"
@@ -30,7 +31,8 @@
     },
     "extends": [
       "plugin:vue/essential",
-      "@vue/standard"
+      "@vue/standard",
+      "prettier"
     ],
     "rules": {
       "import/extensions": [
@@ -63,7 +65,13 @@
           "args": "after-used"
         }
       ],
-      "brace-style": [2, "1tbs", { "allowSingleLine": true }],
+      "brace-style": [
+        2,
+        "1tbs",
+        {
+          "allowSingleLine": true
+        }
+      ],
       "semi": 0,
       "no-useless-constructor": 0,
       "no-console": 0,
@@ -71,8 +79,14 @@
       "prefer-template": 0,
       "no-param-reassign": 0,
       "camelcase": 0,
-      "comma-dangle": [1, "never"],
-      "spaced-comment": [0, "always"],
+      "comma-dangle": [
+        1,
+        "never"
+      ],
+      "spaced-comment": [
+        0,
+        "always"
+      ],
       "space-before-function-paren": 0,
       "func-names": 0,
       "no-underscore-dangle": 0,
@@ -94,14 +108,26 @@
         }
       ],
       "no-mixed-operators": [
-        1,
+        0,
         {
           "allowSamePrecedence": true
         }
       ],
-      "arrow-parens": [1, "as-needed", { "requireForBlockBody": true }],
+      "arrow-parens": [
+        1,
+        "as-needed",
+        {
+          "requireForBlockBody": true
+        }
+      ],
       "prefer-destructuring": 0,
-      "wrap-iife": [2, "inside", { "functionPrototypeMethods": true }],
+      "wrap-iife": [
+        2,
+        "inside",
+        {
+          "functionPrototypeMethods": true
+        }
+      ],
       "no-debugger": 0
     },
     "parserOptions": {

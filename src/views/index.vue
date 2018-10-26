@@ -37,11 +37,9 @@ export default {
       cardList: projectList
     };
   },
-  created() {
-  },
+  created() {},
   methods: {},
-  computed: {
-  }
+  computed: {}
 };
 </script>
 
