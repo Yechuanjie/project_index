@@ -30,10 +30,17 @@ export default {
   methods: {
     initBall() {
       class Ball {
+        /**
+         * 创建小球及动画通用方法
+         * @param canvas {Object} canvas元素
+         * @param context {Object} canvas上下文
+         * @param addAcceleration {Boolean} 是否开启加速度效果
+         * @param desc {String} 小球描述
+         */
         constructor(canvas, context, addAcceleration, desc) {
           this.radius = 15; // 球半径
-          this.x = 0; // 初始位置
-          this.y = 0; // 初始位置
+          this.x = Math.abs(Math.random() * canvas.width - this.radius); // 初始位置
+          this.y = Math.abs(Math.random() * canvas.height - this.radius); // 初始位置
           this.speedx = 4; // 横向移动速度
           this.speedy = 2; // 竖向移动速度
           this.canvas = canvas;
@@ -85,18 +92,26 @@ export default {
       this.createBall('canvas3', 3, Ball, false, true, '', '带长尾效果小球');
       this.createBall('canvas4', 4, Ball, true, true, '', '带加速度，带长尾效果小球');
       this.createBall('canvas5', 5, Ball, true, true, 'click', '从点击位置开始下落');
-      this.createBall('canvas6', 6, Ball, true, true, 'move', '跟随手指移动');
+      this.createBall('canvas6', 6, Ball, true, true, 'move', '跟随手指移动，点击释放，移出停止');
     },
-
+    /**
+     * 创建小球及动画通用方法
+     * @param canvasId {String} 当前canvasid
+     * @param index {Number} 当前小球序号 用于创建不同的小球动画名称，方便后续停止动画
+     * @param Ball {Object Class} 小球类
+     * @param acceleration {Boolean} 是否开启加速度效果
+     * @param longTail {Boolean} 是否开启长尾效果
+     * @param openMouseControl {String} 开启指定名字的鼠标控制
+     * @param desc {String} 小球描述
+     */
     createBall(canvasId, index, Ball, acceleration, longTail, openMouseControl, desc) {
       let canvas = document.getElementById(canvasId);
       let context = canvas.getContext('2d');
       let ball = new Ball(canvas, context, acceleration, desc);
-      console.log(openMouseControl);
       let animateName = `animate_${index}`;
-      // let animateRuning = false;
+      let animateRuning = false;
       if (openMouseControl === 'click') {
-        canvas.addEventListener('mouseup', (e) => {
+        canvas.addEventListener('click', e => {
           window.cancelAnimationFrame(animateName);
           console.log(e);
           ball.x = e.offsetX;
@@ -105,31 +120,45 @@ export default {
         });
       }
       if (openMouseControl === 'move') {
-        canvas.addEventListener('mousemove', (e) => {
-          window.cancelAnimationFrame(animateName);
-          console.log(e);
-          ball.x = e.offsetX;
-          ball.y = e.offsetY;
-          animate();
+        canvas.addEventListener('mousemove', e => {
+          if (!animateRuning) {
+            clear();
+            ball.x = e.offsetX;
+            ball.y = e.offsetY;
+            ball.paint();
+          }
         });
-        canvas.addEventListener('mousemout', () => {
+        canvas.addEventListener('mouseout', () => {
           window.cancelAnimationFrame(animateName);
-          // animateRuning = false;
-        })
+          animateRuning = false;
+        });
+        canvas.addEventListener('click', () => {
+          if (!animateRuning) {
+            animateName = window.requestAnimationFrame(animate);
+            animateRuning = true;
+          }
+        });
       }
-      let animate = () => {
+      let clear = () => {
         if (!longTail) {
           context.clearRect(0, 0, canvas.width, canvas.height);
         } else {
           context.fillStyle = 'rgba(255,255,255,0.3)';
           context.fillRect(0, 0, canvas.width, canvas.height);
         }
+      };
+      let animate = () => {
+        clear();
         ball.move();
         ball.handleMoveEdge();
         ball.paint();
         animateName = window.requestAnimationFrame(animate);
       };
-      animateName = window.requestAnimationFrame(animate);
+      if (openMouseControl === 'move') {
+        ball.paint();
+      } else {
+        animateName = window.requestAnimationFrame(animate);
+      }
     }
   },
   computed: {}
