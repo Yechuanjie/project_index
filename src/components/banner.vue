@@ -1,7 +1,7 @@
 <template>
     <div class="header">
       <div class="head_inner">
-        <h1>粒子效果</h1>
+        <h1>canvas动画效果合集</h1>
       </div>
     </div>
 </template>
@@ -26,9 +26,6 @@ export default {
   background-size: cover;
   color: rgba(255, 255, 255, 0.8);
   .head_inner {
-    h1 {
-      font-size: 40px;
-    }
   }
 }
 </style>

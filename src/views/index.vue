@@ -24,6 +24,10 @@ const projectList = [
   {
     name: '粒子图轮播',
     link: '/mapswiper'
+  },
+  {
+    name: '太阳系动画',
+    link: '/solarsystem'
   }
 ];
 export default {

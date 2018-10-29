@@ -19,6 +19,21 @@ export default new Router({
       path: '/bumping',
       name: 'bumping',
       component: () => import('./views/bumping.vue')
+    },
+    {
+      path: '/mapswiper',
+      name: 'mapswiper',
+      component: () => import('./views/mapswiper.vue')
+    },
+    {
+      path: '/solarsystem',
+      name: 'solarsystem',
+      component: () => import('./views/solarsystem.vue')
+    },
+    {
+      path: '/clock',
+      name: 'clock',
+      component: () => import('./views/clock.vue')
     }
   ]
 });
