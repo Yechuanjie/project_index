@@ -26,7 +26,7 @@ const projectList = [
     link: '/mapswiper'
   },
   {
-    name: '太阳系动画',
+    name: '太阳系动画', // https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial/Basic_animations
     link: '/solarsystem'
   },
   {
