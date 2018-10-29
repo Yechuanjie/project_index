@@ -28,6 +28,10 @@ const projectList = [
   {
     name: '太阳系动画',
     link: '/solarsystem'
+  },
+  {
+    name: '时钟动画',
+    link: '/clock'
   }
 ];
 export default {
