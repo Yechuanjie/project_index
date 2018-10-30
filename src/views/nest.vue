@@ -55,9 +55,8 @@ export default {
             let dist_x = p.x - point.x;
             let dist_y = p.y - point.y;
             let dist = Math.pow(dist_x, 2) + Math.pow(dist_y, 2);
-            let opacity = 1 - dist / maxDist;
+            let opacity = 1 - dist / maxDist; // 按距离改变透明度 达到过度效果
             // console.log(opacity);
-
             // dist < point.max && //eslint-disable-line
             //   (point === movePoint && dist >= point.max / 2 && ((p.x -= 0.03 * dist_x), (p.y -= 0.03 * dist_y))); //eslint-disable-line
             // 两点之间小于最小距离 绘制连线
