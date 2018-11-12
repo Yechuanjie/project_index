@@ -36,7 +36,9 @@ export default {
       default: '/nest'
     }
   },
-  created() {},
+  created() {
+    document.title = this.name;
+  },
   methods: {},
   computed: {}
 };

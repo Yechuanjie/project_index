@@ -17,7 +17,8 @@ export default {
   },
   components: {},
   props: {},
-  created() {},
+  created() {
+  },
   mounted() {
     this.initCanvas();
   },
