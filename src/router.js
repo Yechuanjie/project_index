@@ -8,32 +8,50 @@ export default new Router({
     {
       path: '/',
       name: 'index',
-      component: () => import(/* webpackChunkName: "index" */ './views/index.vue')
+      component: () => import(/* webpackChunkName: "index" */ './views/index.vue'),
+      meta: {
+        title: 'canvas系列动画'
+      }
     },
     {
       path: '/nest',
       name: 'nest',
-      component: () => import('./views/nest.vue')
+      component: () => import('./views/nest.vue'),
+      meta: {
+        title: 'nest粒子效果'
+      }
     },
     {
       path: '/bumping',
       name: 'bumping',
-      component: () => import('./views/bumping.vue')
+      component: () => import('./views/bumping.vue'),
+      meta: {
+        title: '碰壁反弹'
+      }
     },
     {
       path: '/mapswiper',
       name: 'mapswiper',
-      component: () => import('./views/mapswiper.vue')
+      component: () => import('./views/mapswiper.vue'),
+      meta: {
+        title: '粒子图轮播'
+      }
     },
     {
       path: '/solarsystem',
       name: 'solarsystem',
-      component: () => import('./views/solarsystem.vue')
+      component: () => import('./views/solarsystem.vue'),
+      meta: {
+        title: '太阳系动画'
+      }
     },
     {
       path: '/clock',
       name: 'clock',
-      component: () => import('./views/clock.vue')
+      component: () => import('./views/clock.vue'),
+      meta: {
+        title: '时钟动画'
+      }
     }
   ]
 });

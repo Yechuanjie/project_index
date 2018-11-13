@@ -37,7 +37,6 @@ export default {
     }
   },
   created() {
-    document.title = this.name;
   },
   methods: {},
   computed: {}

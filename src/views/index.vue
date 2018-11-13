@@ -45,7 +45,13 @@ export default {
       cardList: projectList
     };
   },
-  created() {},
+  created() {
+    this.$router.beforeEach((to, from, next) => {
+      // to and from are both route objects
+      document.title = to.meta.title;
+      next();
+    });
+  },
   methods: {},
   computed: {}
 };
