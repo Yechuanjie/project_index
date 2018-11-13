@@ -69,20 +69,14 @@ export default {
               let dist_y = p.y - point.y;
               let dist = Math.pow(dist_x, 2) + Math.pow(dist_y, 2);
               let opacity = 1 - dist / maxDist; // 按距离改变透明度 达到过度效果
-              // console.log(opacity);
-              dist < point.max && (point === current_point && dist >= point.max / 2 && ((p.x -= 0.03 * dist_x), (p.y -= 0.03 * dist_y))); //eslint-disable-line
+
               // 两点之间小于最小距离 绘制连线
-              // if (dist < maxDist && point === current_point && dist >= point.max / 2) {
-              //   p.x -= 0.03 * dist_x;
-              //   p.y -= 0.03 * dist_y;
-              // }
-              // if (dist < maxDist) {
+              dist < point.max && (point === current_point && dist >= point.max / 2 && ((p.x -= 0.03 * dist_x), (p.y -= 0.03 * dist_y))); //eslint-disable-line
               ctx.beginPath();
               ctx.strokeStyle = `rgba(255, 255, 255, ${opacity + 0.2})`;
               ctx.moveTo(p.x - this.radius, p.y - this.radius);
               ctx.lineTo(point.x - this.radius, point.y - this.radius);
               ctx.stroke();
-              // }
             }
           }
         });

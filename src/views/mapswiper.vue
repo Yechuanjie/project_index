@@ -1,5 +1,6 @@
 <template>
     <div class="mapswiper">
+      <canvas id="mapSwiper"></canvas>
     </div>
 </template>
 <script>
@@ -9,8 +10,19 @@ export default {
   },
   components: {},
   props: {},
-  created() {},
-  methods: {},
+  created() {
+    this.init();
+  },
+  methods: {
+    init() {
+      class MapSwiper {
+        constructor() {
+          
+        }
+      }
+      new MapSwiper()
+    }
+  },
   computed: {}
 };
 </script>
