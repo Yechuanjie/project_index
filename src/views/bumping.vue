@@ -158,8 +158,9 @@ export default {
       }
     }
   },
+  // 优化
   destroyed() {
-    this.animate.forEach((item) => {
+    this.animate.map((item) => {
       window.cancelAnimationFrame(item);
     });
   },

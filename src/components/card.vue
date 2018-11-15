@@ -20,6 +20,7 @@ export default {
     return {
       bgStyle: {
         backgroundImage: `url(${require(`../assets/cp${Math.floor(Math.random() * 6 + 1)}.jpg`)})`
+        // backgroundImage: `url(${require(`../assets/cp${(this.index + 1)}.jpg`)})`
       },
       bgUrl: ''
     };

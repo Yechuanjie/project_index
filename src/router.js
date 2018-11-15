@@ -52,6 +52,18 @@ export default new Router({
       meta: {
         title: '时钟动画'
       }
+    },
+    {
+      path: '/404',
+      name: '404',
+      component: () => import('./views/404.vue'),
+      meta: {
+        title: '404 Page not found'
+      }
+    },
+    {
+      path: '*',
+      redirect: '/404'
     }
   ]
 });
