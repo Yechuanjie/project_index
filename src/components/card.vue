@@ -2,9 +2,12 @@
 	<div class="card">
 		<div class="effect_name">
 			<div class="effect_up_bg" :style="bgStyle">
-				<router-link :to="link">
+				<!-- <router-link :to="link">
 					<div class="effect_inner">{{name}}</div>
-				</router-link>
+				</router-link> -->
+        <div class="effect_outer" @click="routePath">
+					<div class="effect_inner">{{name}}</div>
+				</div>
 			</div>
 			<div class="effect_mid_bg" :style="bgStyle"></div>
 			<div class="effect_down_bg" :style="bgStyle"></div>
@@ -16,7 +19,7 @@ export default {
   data() {
     return {
       bgStyle: {
-        backgroundImage: `url(${require(`../assets/cp${Math.floor((Math.random() * 6) + 1)}.jpg`)})`
+        backgroundImage: `url(${require(`../assets/cp${Math.floor(Math.random() * 6 + 1)}.jpg`)})`
       },
       bgUrl: ''
     };
@@ -33,12 +36,21 @@ export default {
     },
     link: {
       type: String,
-      default: '/nest'
+      default: 'nest'
+    },
+    index: Number
+  },
+  created() {},
+  methods: {
+    routePath() {
+      this.$router.push({
+        name: this.link,
+        query: {
+          id: this.index
+        }
+      });
     }
   },
-  created() {
-  },
-  methods: {},
   computed: {}
 };
 </script>
@@ -65,18 +77,22 @@ a {
     width: 300px;
     height: 160px;
     z-index: 3;
-    .effect_inner {
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 17px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .effect_outer {
       width: 100%;
       height: 100%;
-      transition: all 0.3s;
-      &:hover {
-        transform: translate3d(0, -6px, 0);
-        box-shadow: 0 30px 30px 0px rgba(0, 0, 100, 0.4);
+      .effect_inner {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        transition: all 0.3s;
+        &:hover {
+          transform: translate3d(0, -6px, 0);
+          box-shadow: 0 30px 30px 0px rgba(0, 0, 100, 0.4);
+        }
       }
     }
   }

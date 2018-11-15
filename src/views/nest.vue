@@ -7,17 +7,19 @@
 export default {
   data() {
     return {
+      animate: null,
       radius: 0.5,
       color: 'rgb(0,0,255)',
       count: 99,
       speed: 3,
-      currentMaxDist: 20000, //和鼠标点产生连线的
-      maxDist: 10000 //两点之间产生连线的距离平方
+      currentMaxDist: window.innerWidth < 500 ? 5000 : 20000, //和鼠标点产生连线的
+      maxDist: window.innerWidth < 500 ? 2500 : 10000 //两点之间产生连线的距离平方
     };
   },
   components: {},
   props: {},
   created() {
+    console.log(this.$route.query);
   },
   mounted() {
     this.initCanvas();
@@ -80,7 +82,7 @@ export default {
             }
           }
         });
-        window.requestAnimationFrame(draw);
+        this.animate = window.requestAnimationFrame(draw);
       };
       // let current_point = {};
       canvas.addEventListener('mousemove', (e) => {
@@ -91,6 +93,9 @@ export default {
       allPoints = [...randomPoints, current_point];
       draw();
     }
+  },
+  destroyed() {
+    window.cancelAnimationFrame(this.animate);
   },
   computed: {}
 };

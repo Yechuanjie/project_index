@@ -12,11 +12,7 @@
 export default {
   data() {
     return {
-      animate1: null,
-      animate2: null,
-      animate3: null,
-      animate4: null,
-      animate5: null
+      animate: []
     };
   },
   components: {},
@@ -109,6 +105,7 @@ export default {
       let context = canvas.getContext('2d');
       let ball = new Ball(canvas, context, acceleration, desc);
       let animateName = `animate_${index}`;
+      this.animate.push(animateName);
       let animateRuning = false;
       if (openMouseControl === 'click') {
         canvas.addEventListener('click', (e) => {
@@ -160,6 +157,11 @@ export default {
         animateName = window.requestAnimationFrame(animate);
       }
     }
+  },
+  destroyed() {
+    this.animate.forEach((item) => {
+      window.cancelAnimationFrame(item);
+    });
   },
   computed: {}
 };
