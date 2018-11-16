@@ -1,7 +1,7 @@
 <template>
     <div class="header">
       <div class="head_inner">
-        <h1>canvas系列动画</h1>
+        <h1>PROJECTS</h1>
       </div>
     </div>
 </template>

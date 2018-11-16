@@ -10,7 +10,7 @@ export default new Router({
       name: 'index',
       component: () => import(/* webpackChunkName: "index" */ './views/index.vue'),
       meta: {
-        title: 'canvas系列动画'
+        title: 'projects'
       }
     },
     {

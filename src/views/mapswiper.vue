@@ -26,10 +26,10 @@ export default {
         canvas,
         ctx: canvas.getContext('2d'),
         imgs: [
-          require('../assets/cp1.jpg'),
-          require('../assets/cp2.jpg'),
-          require('../assets/cp3.jpg'),
-          require('../assets/cp4.jpg')
+          require('../assets/minertocat.png'),
+          require('../assets/inflatocat.png'),
+          require('../assets/surftocat.png'),
+          require('../assets/vinyltocat.png')
         ],
         radius: 1
       });
@@ -68,6 +68,7 @@ export default {
               img.src = src;
               img.onload = () => {
                 this.imgList.push(img);
+                console.log(img.width, img.height);
                 resolve();
               };
             });
@@ -106,8 +107,8 @@ export default {
         toParticle() {
           let imageData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
           let data = imageData.data;
-          for (let x = 0; x < imageData.width; x += this.radius * 5) {
-            for (let y = 0; y < imageData.height; y += this.radius * 5) {
+          for (let x = 0; x < imageData.width; x += this.radius * 2) {
+            for (let y = 0; y < imageData.height; y += this.radius * 2) {
               let i = (x + y * this.canvas.width) * 4;
               if (data[i + 3] !== 0 && data[i] !== 255 && data[i + 1] !== 255 && data[i + 2] !== 255) {
                 let dot = {
