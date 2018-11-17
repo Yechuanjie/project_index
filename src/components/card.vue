@@ -39,11 +39,16 @@ export default {
       type: String,
       default: 'nest'
     },
+    status: {
+      type: String,
+      default: 'finish'
+    },
     index: Number
   },
   created() {},
   methods: {
     routePath() {
+      if (this.status === 'processing') return;
       this.$router.push({
         name: this.link,
         query: {

@@ -2,7 +2,7 @@
   <div class="index">
     <banner></banner>
     <div class="effect_list">
-      <card v-for="(item, index) in cardList" :key="index" :index="index" :name=item.name :link=item.link></card>
+      <card v-for="(item, index) in cardList" :key="index" :status="item.status" :index="index" :name=item.name :link=item.link></card>
     </div>
   </div>
 </template>
@@ -15,23 +15,28 @@ import card from '@/components/card.vue';
 const projectList = [
   {
     name: 'nest粒子效果',
-    link: 'nest'
+    link: 'nest',
+    status: 'finish'
   },
   {
     name: '碰壁反弹',
-    link: 'bumping'
+    link: 'bumping',
+    status: 'finish'
   },
   {
     name: '粒子图轮播',
-    link: 'mapswiper'
+    link: 'mapswiper',
+    status: 'finish'
   },
   {
-    name: '太阳系动画', // https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial/Basic_animations
-    link: 'solarsystem'
+    name: '太阳系动画(进行中)', // https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial/Basic_animations
+    link: 'solarsystem',
+    status: 'processing'
   },
   {
-    name: '时钟动画',
-    link: 'clock'
+    name: '时钟动画(进行中)',
+    link: 'clock',
+    status: 'processing'
   }
 ];
 export default {
@@ -46,7 +51,7 @@ export default {
     };
   },
   created() {
-    console.log(this.$route.query);
+    // console.log(this.$route.query);
   },
   methods: {},
   computed: {}

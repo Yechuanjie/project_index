@@ -1,7 +1,6 @@
 <template>
     <div class="mapswiper">
-      <canvas id="mapSwiper" :width="`${width}px`" :height="`${height}px`"></canvas>
-      <!-- <canvas id="mapSwiper" ref="mapSwiper"></canvas> -->
+      <canvas id="mapswiper" :width="`${width}`" :height="`${height}`"></canvas>
     </div>
 </template>
 <script>
@@ -10,9 +9,9 @@ export default {
   data() {
     return {
       width: 1000,
-      height: 500
-      // width: 300,
-      // height: 160
+      height: 500,
+      combine: null,
+      separate: null
     };
   },
   components: {},
@@ -21,7 +20,7 @@ export default {
   mounted() {
     this.$nextTick(() => {
       let MapSwiper = this.initClass();
-      const canvas = document.querySelector('#mapSwiper');
+      const canvas = document.querySelector('#mapswiper');
       new MapSwiper({
         canvas,
         ctx: canvas.getContext('2d'),
@@ -50,15 +49,12 @@ export default {
           this.init();
         }
         init() {
-          //画布居中
-          this.canvas.style.marginLeft = `calc(50vw - 500px)`;
-          this.canvas.style.marginTop = `calc(50vh - 300px)`;
           // 控制像素点大小，避免生成过多的点
           if (this.canvas.width > 500 || this.canvas.height > 300)
             this.radius >= 4 ? this.radius = this.radius : this.radius = 4;
-          else 
+          else {
             this.radius >= 2 ? this.radius = this.radius : this.radius = 2;
-
+          }
           this.loadImg();
         }
         async loadImg() {
@@ -76,33 +72,27 @@ export default {
           // 资源全部加载完成
           try {
             await Promise.all(promiseList);
-            this.picLoop();
+            this.createPic();
           } catch (error) {
             console.error(error);
           }
         }
-        picLoop() {
+        // 循环绘制
+        createPic() {
           console.log('imgs init success!');
+          // 清空当前粒子 重新绘制
           this.dots = [];
           this.drawPic();
           this.toParticle();
           this.combineAnimate();
           this.index === this.imgs.length-1 ? this.index = 0 : this.index++;
         }
+        // 绘制当前图片
         drawPic() {
           this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
           let img = this.imgList[this.index];
-          //限制图片大小
-          if(img.width > img.height) {
-            let imgScale = img.height / img.width;
-            img.width = this.canvas.width * .5;
-            img.height = img.width * imgScale;
-          } else {
-            let imgScale = img.width / img.height;
-            img.height = this.canvas.height * .7;
-            img.width = img.height * imgScale;
-          }
-          this.ctx.drawImage(img, this.canvas.width / 2 - img.width / 2, this.canvas.height / 2 - img.height / 2);
+          // 居中
+          this.ctx.drawImage(img, this.canvas.width / 2 - img.width / 2, 0);
         }
         toParticle() {
           let imageData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
@@ -182,7 +172,7 @@ export default {
           });
 
           if (!combined) {
-            requestAnimationFrame(() => {
+            this.combine = requestAnimationFrame(() => {
               return this.combineAnimate();
             });
           } else {
@@ -217,12 +207,12 @@ export default {
             return this.drowDot(dot);
           });
           if (!separated) {
-            requestAnimationFrame(() => {
+            this.separate = requestAnimationFrame(() => {
               return this.separateAnimate();
             });
           } else {
             setTimeout(() => {
-              return this.picLoop(); //间接递归，使用尾递归优化
+              return this.createPic(); //间接递归，使用尾递归优化
             }, 100);
           }
         }
@@ -231,11 +221,27 @@ export default {
       return MapSwiper;
     }
   },
-  computed: {}
+  computed: {},
+  destroyed () {
+    // 优化 避免占用设备过多内存
+    cancelAnimationFrame(this.combine);
+    cancelAnimationFrame(this.separate);
+  }
 };
 </script>
 <style lang="scss" scoped>
 .mapswiper {
-  // margin-top: calc(50vh - 160px);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#mapswiper {
+  width: 1000px;
+  height: 500px;
+  // margin-top: calc(50vh - 300px);
+  // margin-left: calc(50vw - 570px);
 }
 </style>
