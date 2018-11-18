@@ -8,12 +8,13 @@ export default {
   data() {
     return {
       animate: null,
-      radius: 0.5,
-      color: 'rgb(0,0,255)',
-      count: 99,
+      radius: 0.5, // 点大小
+      color: '158, 29, 29', //连线颜色
+      // color: '255, 0, 255', //连线颜色
+      count: 60,
       speed: 3,
-      currentMaxDist: window.innerWidth < 500 ? 5000 : 20000, //和鼠标点产生连线的
-      maxDist: window.innerWidth < 500 ? 2500 : 10000 //两点之间产生连线的距离平方
+      currentMaxDist: 20000, //和鼠标点产生连线的
+      maxDist: 6000 //两点之间产生连线的距离平方
     };
   },
   components: {},
@@ -52,16 +53,13 @@ export default {
       let draw = () => {
         ctx.clearRect(0, 0, canvasWidth, canvasHeight);
         randomPoints.forEach((p, index) => {
-          const pointWidth = this.radius * 2;
+          // const pointWidth = this.radius * 2;
           p.x += p.speedx;
           p.y += p.speedy;
-          p.speedx *= p.x > canvasWidth || p.x < pointWidth ? -1 : 1;
-          p.speedy *= p.y > canvasHeight || p.y < pointWidth ? -1 : 1;
-          ctx.beginPath();
-          ctx.arc(p.x - this.radius, p.y - this.radius, this.radius, 0, 2 * Math.PI);
-          // ctx.fillRect(p.x - this.radius, p.y - this.radius, this.radius, 1, 1);
-          ctx.fillStyle = this.color;
-          ctx.fill();
+          p.speedx *= p.x > canvasWidth || p.x < 0 ? -1 : 1;
+          p.speedy *= p.y > canvasHeight || p.y < 0 ? -1 : 1;
+          // 绘制点
+          ctx.fillRect(p.x - this.radius, p.y - this.radius, this.radius * 2, this.radius * 2);
 
           // 绘制两点之间的连线
           for (let i = index + 1; i < allPoints.length; i += 1) {
@@ -71,13 +69,14 @@ export default {
               let dist_y = p.y - point.y;
               let dist = Math.pow(dist_x, 2) + Math.pow(dist_y, 2);
               let opacity = 1 - dist / maxDist; // 按距离改变透明度 达到过度效果
-
+              opacity = (point.max - dist) / point.max;
               // 两点之间小于最小距离 绘制连线
               dist < point.max && (point === current_point && dist >= point.max / 2 && ((p.x -= 0.03 * dist_x), (p.y -= 0.03 * dist_y))); //eslint-disable-line
               ctx.beginPath();
-              ctx.strokeStyle = `rgba(255, 255, 255, ${opacity + 0.2})`;
-              ctx.moveTo(p.x - this.radius, p.y - this.radius);
-              ctx.lineTo(point.x - this.radius, point.y - this.radius);
+              ctx.lineWidth = opacity / 2;
+              ctx.strokeStyle = `rgba(${this.color},${opacity + 0.2})`;
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(point.x, point.y);
               ctx.stroke();
             }
           }
@@ -102,7 +101,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 #nest_canvas {
-  background: darkkhaki;
+  background: rgb(248, 247, 247);
   position: fixed;
   top: 0;
   left: 0;

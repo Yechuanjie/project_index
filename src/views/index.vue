@@ -27,16 +27,6 @@ const projectList = [
     name: '粒子图轮播',
     link: 'mapswiper',
     status: 'finish'
-  },
-  {
-    name: '太阳系动画(进行中)', // https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial/Basic_animations
-    link: 'solarsystem',
-    status: 'processing'
-  },
-  {
-    name: '时钟动画(进行中)',
-    link: 'clock',
-    status: 'processing'
   }
 ];
 export default {
