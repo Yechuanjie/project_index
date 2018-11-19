@@ -9,7 +9,7 @@ export default {
     return {
       animate: null,
       radius: 0.5, // 点大小
-      color: '158, 29, 29', //连线颜色
+      color: '161, 23, 21', //连线颜色
       // color: '255, 0, 255', //连线颜色
       count: 60,
       speed: 3,
@@ -59,7 +59,11 @@ export default {
           p.speedx *= p.x > canvasWidth || p.x < 0 ? -1 : 1;
           p.speedy *= p.y > canvasHeight || p.y < 0 ? -1 : 1;
           // 绘制点
-          ctx.fillRect(p.x - this.radius, p.y - this.radius, this.radius * 2, this.radius * 2);
+          ctx.beginPath();
+          ctx.arc(p.x - this.radius, p.y - this.radius, this.radius * 5, 0, Math.PI * 2);
+          ctx.fillStyle = '#fff';
+          ctx.fill();
+          // ctx.??
 
           // 绘制两点之间的连线
           for (let i = index + 1; i < allPoints.length; i += 1) {
@@ -101,7 +105,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 #nest_canvas {
-  background: rgb(248, 247, 247);
+  background: rgb(131, 175, 155);
   position: fixed;
   top: 0;
   left: 0;
