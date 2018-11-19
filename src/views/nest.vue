@@ -9,7 +9,7 @@ export default {
     return {
       animate: null,
       radius: 0.5, // 点大小
-      color: '161, 23, 21', //连线颜色
+      color: '255, 0, 0', //连线颜色
       // color: '255, 0, 255', //连线颜色
       count: 60,
       speed: 3,
@@ -78,7 +78,7 @@ export default {
               dist < point.max && (point === current_point && dist >= point.max / 2 && ((p.x -= 0.03 * dist_x), (p.y -= 0.03 * dist_y))); //eslint-disable-line
               ctx.beginPath();
               ctx.lineWidth = opacity / 2;
-              ctx.strokeStyle = `rgba(${this.color},${opacity + 0.2})`;
+              ctx.strokeStyle = `rgba(${this.color},${opacity + 0.4})`;
               ctx.moveTo(p.x, p.y);
               ctx.lineTo(point.x, point.y);
               ctx.stroke();
@@ -105,7 +105,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 #nest_canvas {
-  background: rgb(131, 175, 155);
+  background: rgb(119, 154, 168);
   position: fixed;
   top: 0;
   left: 0;
