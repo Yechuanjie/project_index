@@ -42,7 +42,7 @@ export default new Router({
       name: '404',
       component: () => import('./views/404.vue'),
       meta: {
-        title: 'Page not found'
+        title: '404 Page not found'
       }
     },
     {
