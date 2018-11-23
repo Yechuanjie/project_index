@@ -2,9 +2,6 @@
 	<div class="card">
 		<div class="effect_name">
 			<div class="effect_up_bg" :style="bgStyle">
-				<!-- <router-link :to="link">
-					<div class="effect_inner">{{name}}</div>
-				</router-link> -->
         <div class="effect_outer" @click="routePath">
 					<div class="effect_inner">{{name}}</div>
 				</div>
@@ -47,10 +44,6 @@ export default {
     index: Number
   },
   created() {
-    // let hsl = this.randomHsl();
-    // let rgb = this.hslToRgb(...hsl);
-    // this.bgStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]}, 0.8)`
-    // this.bgStyle = this.setColor();
   },
   methods: {
     routePath() {
@@ -58,7 +51,8 @@ export default {
       this.$router.push({
         name: this.link,
         query: {
-          id: this.index
+          id: this.index,
+          name: this.name
         }
       });
     },
@@ -136,15 +130,12 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-a {
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.8);
-}
 .effect_name {
   padding: 30px;
   width: 300px;
   height: 160px;
   position: relative;
+  cursor: pointer;
   .effect_up_bg,
   .effect_mid_bg,
   .effect_down_bg {
@@ -160,7 +151,7 @@ a {
       transform: translate3d(0, -10px, 0);
     }
     .effect_mid_bg {
-      transform: translate3d(0, -4px, 0) scaleX(0.95);
+      transform: translate3d(0, -3px, 0) scaleX(0.95);
       top: 45px;
     }
     .effect_down_bg {

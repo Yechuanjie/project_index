@@ -27,6 +27,11 @@ const projectList = [
     name: '粒子图轮播',
     link: 'mapswiper',
     status: 'finish'
+  },
+  {
+    name: 'svg测试',
+    link: 'svg',
+    status: 'finish'
   }
 ];
 export default {

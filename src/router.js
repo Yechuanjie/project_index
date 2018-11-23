@@ -10,7 +10,7 @@ export default new Router({
       name: 'index',
       component: () => import(/* webpackChunkName: "index" */ './views/index.vue'),
       meta: {
-        title: 'projects'
+        title: 'demo & project'
       }
     },
     {
@@ -35,6 +35,14 @@ export default new Router({
       component: () => import('./views/mapswiper.vue'),
       meta: {
         title: '粒子图轮播'
+      }
+    },
+    {
+      path: '/svg',
+      name: 'svg',
+      component: () => import('./views/svg.vue'),
+      meta: {
+        title: 'svg测试'
       }
     },
     {

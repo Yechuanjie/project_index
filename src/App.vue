@@ -7,13 +7,9 @@
 <script>
 </script>
 <style lang="scss">
-* {
-  margin: 0;
-  padding: 0;
-}
+@import './common/reset.scss';
 #app {
   width: 100%;
-  overflow: hidden;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
