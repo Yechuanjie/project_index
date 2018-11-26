@@ -1,6 +1,6 @@
 <template>
     <div class="svg">
-        <img src="../assets/border.svg" alt="">
+        <!-- <img src="../assets/border.svg" alt=""> -->
         <div class="border">
             <ul>
                 <li v-for="(item, index) in list" :key="index">{{item}}</li>
@@ -18,7 +18,7 @@ export default {
   components: {},
   props: {},
   created() {
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 20; i++) {
       this.list.push(`index_${i}`);
     }
   },
@@ -37,10 +37,12 @@ export default {
   ul {
     margin: 0 20px;
     padding: 20px 0 0 0;
-    // border-image: url('../assets/border.svg');
-    border-image:linear-gradient(180deg, rgba(248,229,204,1), rgba(239,231,191,1)) 2 2;
-    border-width: 5px;
+    border-image-source: url('../assets/border.svg');
+    // border-image:linear-gradient(180deg, rgba(248,229,204,1), rgba(239,231,191,1)) 2 2;
+    border-width: 20px;
     border-style: solid;
+    border-image-repeat: repeat;
+    border-image-slice: 20;
     li {
         margin-bottom: 15px;
         color: #eee;
