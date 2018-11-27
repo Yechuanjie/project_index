@@ -28,7 +28,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .svg {
-  background: #000;
+  // background: #000;
   padding: 30px 0;
 }
 .border {
@@ -43,9 +43,13 @@ export default {
     border-style: solid;
     border-image-repeat: repeat;
     border-image-slice: 20;
+    @media screen and(min-width: 768px) {
+      max-width: 40%;
+      margin: 0 auto;
+    }
     li {
-        margin-bottom: 15px;
-        color: #eee;
+        margin-bottom: 25px;
+        color: #333;
     }
   }
 }
