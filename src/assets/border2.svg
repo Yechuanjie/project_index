@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="355px" height="317px" viewBox="0 0 355 317" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>rim1@3x</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#F8E5CC" offset="0%"></stop>
+            <stop stop-color="#EFE7BF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="详细运势-copy" transform="translate(-10.000000, -260.000000)" fill="#FFFFFF" stroke="url(#linearGradient-1)" stroke-width="3">
+            <path d="M363.5,570.673932 L363.5,266.326068 C361.114819,265.762648 359.237352,263.885181 358.673932,261.5 L16.3260682,261.5 C15.7626475,263.885181 13.8851807,265.762648 11.5,266.326068 L11.5,570.673932 C13.8851807,571.237352 15.7626475,573.114819 16.3260682,575.5 L358.673932,575.5 C359.237352,573.114819 361.114819,571.237352 363.5,570.673932 Z" id="rim1"></path>
+        </g>
+    </g>
+</svg>
