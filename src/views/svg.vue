@@ -12,7 +12,11 @@
                 <li v-for="(item, index) in testList" :key="index">{{item}}</li>
                 <button @click="showMore">展开</button>
             </ul>
-            
+        </div>
+
+        <div class="border3" :class="{'large_slice': largeSlice, 'has_fill': hasFill}">
+          <button @click="changeSlice">toggle slice</button>
+          <button @click="changeFill">toggle fill</button>
         </div>
     </div>
 </template>
@@ -21,7 +25,9 @@ export default {
   data() {
     return {
       list: [],
-      testList: []
+      testList: [],
+      largeSlice: false,
+      hasFill: false
     };
   },
   components: {},
@@ -40,6 +46,12 @@ export default {
       for (let i = 0; i < 10; i++) {
         this.testList.push(`index_${lastLength + i}`);
       }
+    },
+    changeSlice() {
+      this.largeSlice = !this.largeSlice;
+    },
+    changeFill() {
+      this.hasFill = !this.hasFill;
     }
   },
   computed: {}
@@ -51,7 +63,7 @@ export default {
   padding: 30px 0;
 }
 button {
-  width: 150px;
+  width: 130px;
   height: 40px;
 }
 .border, .border2 {
@@ -80,10 +92,34 @@ button {
   margin-top: 20px;
   ul {
     border-image-source: url('../assets/border2.svg');
-    border-width: 30px;
+    border-width: 20px;
     border-style: solid;
-    border-image-repeat: repeat;
-    border-image-slice: 27;
+    border-image-repeat: round;
+    border-image-slice: 20;
+  }
+}
+.border3 {
+  width: 80%;
+  height: 30vh;
+  margin: 15px auto 0;
+  background: #fff3d4;
+  border: 30px solid;
+  border-image: url('../assets/border-diamonds.png') 30 round;
+  @media screen and(min-width: 768px) {
+    max-width: 40%;
+    margin: 0 auto;
+  }
+  button {
+    margin-top: 13vh;
+  }
+  button + button {
+    margin-left: 10px;
+  }
+  &.large_slice {
+    border-image-slice: 40;
+  }
+  &.has_fill {
+    border-image-slice: 30 fill;
   }
 }
 </style>
