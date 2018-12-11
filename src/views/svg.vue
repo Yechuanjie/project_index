@@ -1,6 +1,5 @@
 <template>
     <div class="svg">
-        <!-- <img src="../assets/border.svg" alt=""> -->
         <div class="border">
             <ul>
                 <li v-for="(item, index) in list" :key="index">{{item}}</li>
