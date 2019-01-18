@@ -48,6 +48,10 @@ export default {
   methods: {
     routePath() {
       if (this.status === 'processing') return;
+      if (this.link.indexOf('http') > -1) {
+        window.location.href = this.link;
+        return;
+      }
       this.$router.push({
         name: this.link,
         query: {

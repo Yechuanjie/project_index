@@ -32,6 +32,11 @@ const projectList = [
     name: 'svg测试',
     link: 'svg',
     status: 'finish'
+  },
+  {
+    name: '黄金矿工',
+    link: 'https://yechuanjie.github.io/project/goldman/index.html',
+    status: 'finish'
   }
 ];
 export default {
