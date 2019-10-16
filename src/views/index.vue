@@ -35,7 +35,7 @@ const projectList = [
   },
   {
     name: '黄金矿工',
-    link: 'https://yechuanjie.github.io/project/goldman/index.html',
+    link: 'https://yechuanjie.com/goldman',
     status: 'finish'
   }
 ];
