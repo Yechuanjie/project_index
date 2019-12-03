@@ -17,9 +17,9 @@ export default {
     return {
       bgStyle: {
         // backgroundImage: `url(${require(`../assets/cp${Math.floor(Math.random() * 6 + 1)}.jpg`)})`
-        backgroundImage: `url(${require(`../assets/cp${(this.index + 1)}.jpg`)})`
+        // backgroundImage: `url(${require(`../assets/cp${(this.index + 1)}.jpg`)})`
+        backgroundImage: ``
       },
-      // bgStyle: '',
       bgUrl: ''
     };
   },
@@ -44,6 +44,11 @@ export default {
     index: Number
   },
   created() {
+    let index = this.index + 1;
+    if (index > 5) {
+      index = (index) % 5 + 1;
+    }
+    this.bgStyle.backgroundImage = `url(${require(`../assets/cp${index}.jpg`)})`;
   },
   methods: {
     routePath() {

@@ -100,13 +100,13 @@ button {
 .border3 {
   width: 80%;
   height: 30vh;
-  margin: 15px auto 0;
+  margin: 30px auto 0;
   background: #fff3d4;
   border: 30px solid;
   border-image: url('../assets/border-diamonds.png') 30 round;
   @media screen and(min-width: 768px) {
     max-width: 40%;
-    margin: 0 auto;
+    margin: 30px auto 0;
   }
   button {
     margin-top: 13vh;

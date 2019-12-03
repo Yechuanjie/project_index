@@ -34,8 +34,13 @@ const projectList = [
     status: 'finish'
   },
   {
-    name: '黄金矿工',
+    name: '黄金矿工（移动端）',
     link: 'https://yechuanjie.com/goldman',
+    status: 'finish'
+  },
+  {
+    name: 'Lottie动画（移动端）',
+    link: 'https://yechuanjie.com/lottie_demo',
     status: 'finish'
   }
 ];
