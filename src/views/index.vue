@@ -35,12 +35,12 @@ const projectList = [
   },
   {
     name: '黄金矿工（移动端）',
-    link: 'https://me.9cnext.com/goldman',
+    link: 'https://yechuanjie.top/goldman',
     status: 'finish'
   },
   {
     name: 'Lottie动画（移动端）',
-    link: 'https://me.9cnext.com/lottie_demo',
+    link: 'https://yechuanjie.top/lottie_demo',
     status: 'finish'
   }
 ];
